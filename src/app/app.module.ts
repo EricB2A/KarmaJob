@@ -10,28 +10,36 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { JobsPage } from "../pages/jobs/jobs";
+import { JobsProvider } from '../providers/jobs/jobs';
+import {HttpModule} from '@angular/http'
+
 @NgModule({
   declarations: [
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
-    ListPage
+    ListPage,
+    JobsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
-    ListPage
+    ListPage,
+    JobsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    JobsProvider
   ]
 })
 export class AppModule {}
