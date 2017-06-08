@@ -14,9 +14,7 @@ import { Job } from '../../models/job';
 @Injectable()
 export class JobsProvider {
   apiUrl = "http://karmajobs.servehttp.com/api";
-  constructor(public http: Http) {
-    console.log('Hello JobsProvider Provider');
-  }
+  constructor(public http: Http) { }
 
   load(): Observable<Job[]> {
     return this.http.get(this.apiUrl + "/jobs")
