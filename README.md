@@ -1,26 +1,78 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# Ionic - KarmaJob
 
-## How to use this template
+## Installation Guide
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+*Note : Ionic targets iOS and android devices. However, as there's many version, yours mays not works as well. Please refer to the [Offical Github](https://github.com/ionic-team/ionic) for more informations.*
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+### Requirements
 
-### With the Ionic CLI:
+*Important: All the requirements listed bellow need to be installed only once. You don't need to install it if you have already done some android or ios development.*
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
+* [Node.JS](https://nodejs.org/en/)  
 
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myTutorial tutorial
-```
+For Android :
 
-Then, to run it, cd into `myTutorial` and run:
+* [Java Development Kit](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) (JDK) 8 or Later
 
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
+* [Android SDK](https://developer.android.com/studio/index.html) 
 
-Substitute ios for android if not on a Mac.
+Please refer to the [Cordova documentation](http://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html) in case of trouble.  
 
+For iOS : 
+
+* [XCode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
+
+Then run `xcode-select --install`
+
+* The [deploy tools](https://www.npmjs.com/package/ios-deploy) with the command `npm install -g ios-deploy`  
+
+
+
+### Ionic installation  
+
+Simply run `sudo npm install -g ionic`.    
+
+To **enable the platform**, use the following commands  
+
+`ionic cordova platform add ios`  
+
+or/and  
+
+`ionic cordova platform add android`  
+
+
+
+And for **testing**, use 
+
+`ionic cordova build ios` then `ionic cordova emulate ios`  
+
+and/or  
+
+`ionic cordova build android` then `ionic cordova emulate android`  
+
+
+
+If you want to test it as a native app, use  
+
+`ionic cordova run ios`  
+
+and/or  
+
+`ionic cordova run android`  
+
+
+
+You can also have access to the app in your browser direcly by using  
+
+`ionic serve`  
+
+
+
+If you have any trouble at this point, please refer to the [official documentation](http://ionicframework.com/docs/v1/guide/installation.html)
+
+
+
+!!!This documentation has not been fully tested yet.
+
+
+`npm install @ionic/cloud-angular --save`
