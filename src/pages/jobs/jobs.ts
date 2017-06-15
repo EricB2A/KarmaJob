@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Pipe, Injectable, PipeTransform} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { JobsProvider } from '../../providers/jobs/jobs'
@@ -10,6 +10,21 @@ import {Job} from "../../models/job";
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
+
+@Pipe({
+  name: 'objectValues'
+})
+
+@Injectable()
+export class ObjectValuesPipe implements PipeTransform {
+  transform(obj: any) {
+    if(obj==null){return null;}
+    let arr = Object.keys(obj).map(function (key) { return obj[key]; });
+    return arr[0];
+  }
+}
+
+
 @IonicPage()
 @Component({
   selector: 'page-jobs',
@@ -29,5 +44,7 @@ export class JobsPage {
   ionViewDidLoad() {
     console.log('Hello Jobs Page');
   }
+
+
 
 }

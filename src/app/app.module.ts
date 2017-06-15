@@ -10,8 +10,8 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { JobsPage } from "../pages/jobs/jobs";
-import { JobsProvider } from '../providers/jobs/jobs';
+import {JobsPage, ObjectValuesPipe} from "../pages/jobs/jobs";
+import {JobsProvider } from '../providers/jobs/jobs';
 import {HttpModule} from '@angular/http'
 
 @NgModule({
@@ -20,7 +20,8 @@ import {HttpModule} from '@angular/http'
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    JobsPage
+    JobsPage,
+    ObjectValuesPipe
   ],
   imports: [
     BrowserModule,

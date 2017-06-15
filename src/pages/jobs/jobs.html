@@ -5,25 +5,22 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Jobs</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content padding>
   <h3>Jobs disponibles </h3>
   <ion-list>
-
-    <button ion-item *ngFor="let job of jobs">
+    <button ion-item *ngFor="let job of jobs | objectValues">
       <h3>{{job.title}}</h3>
       <p>{{job.category}}</p>
       <p>{{job.reward}}</p>
     </button>
+
   </ion-list>
 </ion-content>
