@@ -50,7 +50,7 @@ and/or
 
 `ionic cordova build android` then `ionic cordova emulate android`  
 
-
+if you don't want the debug mode, use the parameter --release as `ionic cordova build --release android`
 
 If you want to test it as a native app, use  
 
@@ -66,13 +66,16 @@ You can also have access to the app in your browser direcly by using
 
 `ionic serve`  
 
-
-
 If you have any trouble at this point, please refer to the [official documentation](http://ionicframework.com/docs/v1/guide/installation.html)
 
 
 
 !!!This documentation has not been fully tested yet.
-
-
 `npm install @ionic/cloud-angular --save`
+
+
+## Build an APK
+
+Ionic generate an auto-signed APK when we build the app.
+You can find this **.apk** in _/platforms/android/build/outputs/apk/android.apk_
+If you plan to build a realease.apk and sign it 'manually', please refer to the [documentation](http://ionicframework.com/docs/v1/guide/publishing.html)

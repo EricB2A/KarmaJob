@@ -16,7 +16,7 @@
 <ion-content padding>
   <h3>Jobs disponibles </h3>
   <ion-list>
-    <button ion-item *ngFor="let job of jobs | objectValues">
+    <button ion-item *ngFor="let job of jobs | objectValues" (click)="goToDetails(job)">
       <h3>{{job.title}}</h3>
       <p>{{job.category}}</p>
       <p>{{job.reward}}</p>

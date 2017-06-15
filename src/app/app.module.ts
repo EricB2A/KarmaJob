@@ -13,6 +13,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {JobsPage, ObjectValuesPipe} from "../pages/jobs/jobs";
 import {JobsProvider } from '../providers/jobs/jobs';
 import {HttpModule} from '@angular/http'
+import {SettingsPage} from "../pages/settings/settings";
+import { IonicStorageModule } from '@ionic/storage';
+
 
 @NgModule({
   declarations: [
@@ -21,12 +24,14 @@ import {HttpModule} from '@angular/http'
     ItemDetailsPage,
     ListPage,
     JobsPage,
-    ObjectValuesPipe
+    ObjectValuesPipe,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,7 +39,8 @@ import {HttpModule} from '@angular/http'
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    JobsPage
+    JobsPage,
+    SettingsPage
   ],
   providers: [
     StatusBar,
