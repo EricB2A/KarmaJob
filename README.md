@@ -29,7 +29,7 @@ Then run `xcode-select --install`
 
 ### Ionic installation  
 
-Simply run `sudo npm install -g ionic`.    
+Simply run `sudo npm install -g ionic cordova`.    
 
 To **enable the platform**, use the following commands  
 
@@ -37,8 +37,8 @@ To **enable the platform**, use the following commands
 
 And for **testing**, use 
 
-`ionic cordova build ios` and/or `ionic cordova build android`
-then 
+`ionic cordova build ios` and/or `ionic cordova build android`  
+then   
 `ionic cordova emulate ios` and/or `ionic cordova emulate android`  
 
 if you don't want the debug mode, use the parameter --release as `ionic cordova build --release android`
