@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { Http } from '@angular/http';
 
 /**
  * Generated class for the SettingsPage page.
@@ -15,15 +16,46 @@ import { Storage } from '@ionic/storage';
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+  settings = {url:""};
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public alertCtrl: AlertController, public http: Http) {
+    this.storage.get('api_url')
+      .then(data => {
+        this.settings.url = data;
+      })
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad(){
     console.log('ionViewDidLoad SettingsPage');
-    this.storage.get('api_url').then((api_url) => {
-      console.log("my api url for test")
-      console.log(api_url);
-    })
+  }
+
+  settingForm(){
+    console.log("setttiiiiing");
+    console.log(this.settings);
+
+    this.http.get(this.settings.url)
+      .subscribe(
+        data => {
+          this.storage.set('api_url', this.settings.url);
+          console.log("Worked so far !");
+        },
+        err => {
+          let alert = this.alertCtrl.create({
+              title: 'API URL NOT VALID!',
+              subTitle: 'The given url is not a valid api. For trial, please use http://karmajobs.servehttp.com/api .',
+              buttons: ['OK']
+            });
+            alert.present();
+        }
+      );
+
+
+    // let alert = this.alertCtrl.create({
+    //   title: 'New Friend!',
+    //   subTitle: 'Your friend, Obi wan Kenobi, just accepted your friend request!',
+    //   buttons: ['OK']
+    // });
+    // alert.present();
   }
 
 }

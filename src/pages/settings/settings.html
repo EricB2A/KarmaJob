@@ -17,5 +17,11 @@
 
 
 <ion-content padding>
+  <form (ngSubmit)="settingForm()">
+    <ion-item>
+      <ion-label>API Url</ion-label>
+      <ion-input name="url" type="text" [(ngModel)]="settings.url" placeholder="htp://..." value="settings.url"></ion-input>
+    </ion-item>
+  </form>
 
 </ion-content>
