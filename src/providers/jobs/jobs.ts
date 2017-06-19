@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Storage } from '@ionic/storage';
 import {Observable} from "rxjs/Observable";
+
 import 'rxjs/add/operator/map';
 
 import { Job } from '../../models/job';
@@ -11,14 +13,29 @@ import { Job } from '../../models/job';
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular 2 DI.
 */
+
 @Injectable()
 export class JobsProvider {
-  apiUrl = "http://karmajobs.servehttp.com/api";
-  constructor(public http: Http) { }
+  api_url = "";
 
-  load(): Observable<Job[]> {
-    return this.http.get(this.apiUrl + "/jobs")
+  constructor(public http: Http, public storage: Storage) { }
+
+  getJobs(url){
+    return this.http.get(url)
       .map(res => <Job[]>res.json());
+  }
+
+  getSetting(key){
+    return this.storage.get(key);
+  }
+
+  load(): any {
+    // let settings_url = this.getSetting("url_api");
+    return this.storage.get("url_api")
+      .then(url_setting => {
+        return this.http.get(url_setting)
+          .map(res => <Job[]>res.json());
+      })
   }
 
 }

@@ -30,9 +30,7 @@ export class SettingsPage {
   }
 
   settingForm(){
-    console.log("setttiiiiing");
     console.log(this.settings);
-
     this.http.get(this.settings.url)
       .subscribe(
         data => {
@@ -42,20 +40,13 @@ export class SettingsPage {
         err => {
           let alert = this.alertCtrl.create({
               title: 'API URL NOT VALID!',
-              subTitle: 'The given url is not a valid api. For trial, please use http://karmajobs.servehttp.com/api .',
+              subTitle: 'The given url is not a valid api. For trial, please use http://karmajobs.servehttp.com/api/jobs .',
               buttons: ['OK']
             });
             alert.present();
         }
       );
 
-
-    // let alert = this.alertCtrl.create({
-    //   title: 'New Friend!',
-    //   subTitle: 'Your friend, Obi wan Kenobi, just accepted your friend request!',
-    //   buttons: ['OK']
-    // });
-    // alert.present();
   }
 
 }

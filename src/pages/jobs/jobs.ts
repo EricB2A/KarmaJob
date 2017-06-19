@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { JobsProvider } from '../../providers/jobs/jobs'
 import {Job} from "../../models/job";
 import {ItemDetailsPage} from "../item-details/item-details";
+import {Observable} from "rxjs/Observable";
 
 /**
  * Generated class for the JobsPage page.
@@ -32,9 +33,15 @@ export class JobsPage {
   jobs: Job[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private jobsProv: JobsProvider) {
-    jobsProv.load().subscribe(jobs => {
-      this.jobs = jobs;
-    });
+
+    jobsProv.load()
+      .then(jobsObservable => {
+        console.log(jobsObservable);
+        jobsObservable.subscribe(jobs=>{
+          console.log(jobs);
+          this.jobs = jobs;
+        })
+      })
   }
 
   goToDetails(details: object){
@@ -44,7 +51,4 @@ export class JobsPage {
   ionViewDidLoad() {
     console.log('Hello Jobs Page');
   }
-
-
-
 }
