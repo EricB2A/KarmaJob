@@ -2,9 +2,9 @@ import {Component, Pipe, Injectable, PipeTransform} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { JobsProvider } from '../../providers/jobs/jobs'
-import {Job} from "../../models/job";
-import {ItemDetailsPage} from "../item-details/item-details";
-import {Observable} from "rxjs/Observable";
+import { Job } from "../../models/job";
+import { ItemDetailsPage } from "../item-details/item-details";
+
 
 /**
  * Generated class for the JobsPage page.
@@ -34,14 +34,7 @@ export class JobsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private jobsProv: JobsProvider) {
 
-    jobsProv.load()
-      .then(jobsObservable => {
-        console.log(jobsObservable);
-        jobsObservable.subscribe(jobs=>{
-          console.log(jobs);
-          this.jobs = jobs;
-        })
-      })
+    jobsProv.load().subscribe(jobs => this.jobs = jobs);
   }
 
   goToDetails(details: object){
