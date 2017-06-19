@@ -13,7 +13,6 @@
 For Android :
 
 * [Java Development Kit](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) (JDK) 8 or Later
-
 * [Android SDK](https://developer.android.com/studio/index.html) 
 
 Please refer to the [Cordova documentation](http://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html) in case of trouble.  
@@ -34,35 +33,22 @@ Simply run `sudo npm install -g ionic`.
 
 To **enable the platform**, use the following commands  
 
-`ionic cordova platform add ios`  
-
-or/and  
-
-`ionic cordova platform add android`  
-
-
+`ionic cordova platform add ios` or/and `ionic cordova platform add android`  
 
 And for **testing**, use 
 
-`ionic cordova build ios` then `ionic cordova emulate ios`  
-
-and/or  
-
-`ionic cordova build android` then `ionic cordova emulate android`  
+`ionic cordova build ios` and/or `ionic cordova build android`
+then 
+`ionic cordova emulate ios` and/or `ionic cordova emulate android`  
 
 if you don't want the debug mode, use the parameter --release as `ionic cordova build --release android`
 
-If you want to test it as a native app, use  
+If you want to test it as a **native app**, use  
 
-`ionic cordova run ios`  
-
-and/or  
-
-`ionic cordova run android`  
+`ionic cordova run ios`  and/or  `ionic cordova run android`  
 
 
-
-You can also have access to the app in your browser direcly by using  
+You can also have access to the app in your **browser** direcly by using  
 
 `ionic serve`  
 
@@ -70,12 +56,7 @@ If you have any trouble at this point, please refer to the [official documentati
 
 
 
-!!!This documentation has not been fully tested yet.
-`npm install @ionic/cloud-angular --save`
-
-
 ## Build an APK
-
 Ionic generate an auto-signed APK when we build the app.
 You can find this **.apk** in _/platforms/android/build/outputs/apk/android.apk_
 If you plan to build a realease.apk and sign it 'manually', please refer to the [documentation](http://ionicframework.com/docs/v1/guide/publishing.html)
