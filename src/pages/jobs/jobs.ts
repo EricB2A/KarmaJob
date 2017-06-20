@@ -33,8 +33,9 @@ export class JobsPage {
   jobs: Job[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private jobsProv: JobsProvider) {
-
-    jobsProv.load().subscribe(jobs => this.jobs = jobs);
+    jobsProv.load().subscribe(jobs => {
+      this.jobs = jobs
+    });
   }
 
   goToDetails(details: object){

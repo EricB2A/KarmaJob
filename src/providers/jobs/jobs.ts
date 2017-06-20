@@ -20,23 +20,12 @@ import { Job } from '../../models/job';
 
 @Injectable()
 export class JobsProvider {
-  api_url = "";
 
-  constructor(public http: Http, public storage: Storage) { }
-
-  getJobs(url){
-    return this.http.get(url)
-      .map(res => <Job[]>res.json());
-  }
-
-  getSetting(key){
-    return this.storage.get(key);
+  constructor(public http: Http, public storage: Storage){
   }
 
   load(): Observable<Job[]> {
-    return Observable.fromPromise(this.storage.get("url_api")).mergeMap(url_setting => {
-      console.log("my settings");
-      console.log(url_setting);
+    return Observable.fromPromise(this.storage.get("api_url")).mergeMap(url_setting => {
       return this.http.get(url_setting)
         .map(res => <Job[]>res.json());
     });
