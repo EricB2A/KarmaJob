@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
+import {FormBuilder, Validators} from "@angular/forms";
 
 /**
  * Generated class for the SettingsPage page.
@@ -17,12 +18,14 @@ import { Http } from '@angular/http';
 export class SettingsPage {
 
   settings = {url:""};
+  urlForm = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public alertCtrl: AlertController, public http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public alertCtrl: AlertController, public http: Http, private formBuilder: FormBuilder) {
     this.storage.get('api_url')
       .then(data => {
         this.settings.url = data;
-      })
+      });
+
   }
 
   ionViewDidLoad(){
@@ -44,6 +47,7 @@ export class SettingsPage {
               buttons: ['OK']
             });
             alert.present();
+
         }
       );
 
