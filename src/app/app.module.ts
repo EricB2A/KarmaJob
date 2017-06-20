@@ -15,7 +15,8 @@ import {JobsProvider } from '../providers/jobs/jobs';
 import {HttpModule} from '@angular/http'
 import {SettingsPage} from "../pages/settings/settings";
 import { IonicStorageModule } from '@ionic/storage';
-
+import { MapPage } from "../pages/map/map";
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { IonicStorageModule } from '@ionic/storage';
     ListPage,
     JobsPage,
     ObjectValuesPipe,
-    SettingsPage
+    SettingsPage,
+    MapPage
   ],
   imports: [
     BrowserModule,
@@ -40,13 +42,15 @@ import { IonicStorageModule } from '@ionic/storage';
     ItemDetailsPage,
     ListPage,
     JobsPage,
-    SettingsPage
+    SettingsPage,
+    MapPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    JobsProvider
+    JobsProvider,
+    Geolocation
   ]
 })
 export class AppModule {}

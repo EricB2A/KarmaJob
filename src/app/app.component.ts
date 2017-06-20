@@ -9,6 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { JobsPage } from "../pages/jobs/jobs";
 import { SettingsPage } from "../pages/settings/settings";
+import { MapPage } from "../pages/map/map";
 
 @Component({
   templateUrl: 'app.html'
@@ -32,6 +33,7 @@ export class MyApp {
     this.pages = [
       { title: 'Hello Ionic', component: HelloIonicPage },
       { title : 'Jobs', component: JobsPage },
+      { title : 'Maps', component: MapPage },
       { title : 'Settings', component: SettingsPage}
     ];
   }
