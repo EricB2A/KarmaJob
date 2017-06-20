@@ -18,6 +18,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MapPage } from "../pages/map/map";
 import { Geolocation } from '@ionic-native/geolocation';
 
+import { Network } from '@ionic-native/network';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -50,7 +52,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     JobsProvider,
-    Geolocation
+    Geolocation,
+    Network
   ]
 })
 export class AppModule {}

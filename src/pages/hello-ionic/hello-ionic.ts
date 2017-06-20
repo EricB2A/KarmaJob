@@ -1,8 +1,10 @@
 import {Component} from '@angular/core';
-import {NavController, Platform, AlertController} from 'ionic-angular';
+import {Platform, AlertController, ToastController} from 'ionic-angular';
+import { Network } from '@ionic-native/network';
 
-declare var navigator: any;
-declare var Connection: any;
+declare let navigator: any;
+declare let Connection: any;
+
 
 @Component({
   selector: 'page-hello-ionic',
@@ -10,28 +12,28 @@ declare var Connection: any;
 })
 export class HelloIonicPage {
 
-  constructor(private navCtrl: NavController, private platform: Platform, public alertCtrl: AlertController) { }
+  constructor(private toast: ToastController, private platform: Platform, public alertCtrl: AlertController, private network: Network) { }
 
-  checkNetwork() {
-    this.platform.ready().then(() => {
-      var networkState = navigator.connection.type;
-      var states = {};
-      states[Connection.UNKNOWN]  = 'Unknown connection';
-      states[Connection.ETHERNET] = 'Ethernet connection';
-      states[Connection.WIFI]     = 'WiFi connection';
-      states[Connection.CELL_2G]  = 'Cell 2G connection';
-      states[Connection.CELL_3G]  = 'Cell 3G connection';
-      states[Connection.CELL_4G]  = 'Cell 4G connection';
-      states[Connection.CELL]     = 'Cell generic connection';
-      states[Connection.NONE]     = 'No network connection';
-      let alert = this.alertCtrl.create({
-        title: "Connection Status",
-        subTitle: states[networkState],
-        buttons: ["OK"]
-      });
-      alert.present(alert);
-    });
+  displayNetworkUpdate(connectionState: string) {
+    let networkType = this.network.type;
+    console.log("create a new toast now...")
+    this.toast.create({
+      message: `You are now ${connectionState} via ${networkType}`,
+      duration: 3000
+    }).present();
   }
 
 
+  ionViewDidEnter() {
+    console.log("welcommen");
+    this.network.onConnect().subscribe(data => {
+      console.log(data);
+      this.displayNetworkUpdate(data.type)
+    }, error => console.error(error));
+
+    this.network.onDisconnect().subscribe(data => {
+      console.log(data);
+      this.displayNetworkUpdate(data.type);
+    }, error => console.error(error));
+  }
 }
