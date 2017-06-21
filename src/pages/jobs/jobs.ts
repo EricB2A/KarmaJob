@@ -36,6 +36,7 @@ export class JobsPage {
     jobsProv.load().subscribe(jobs => {
       this.jobs = jobs
     }, (err) => {
+      console.log("error")
       console.log(err);
     });
   }

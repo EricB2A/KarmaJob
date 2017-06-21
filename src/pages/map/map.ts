@@ -21,7 +21,7 @@ export class MapPage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geo: Geolocation) {
+  constructor(public geo: Geolocation) {
   }
 
   ionViewDidLoad() {
