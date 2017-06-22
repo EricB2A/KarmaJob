@@ -1,7 +1,9 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+import { JobsProvider } from "../../providers/jobs/jobs";
 
+import { Job } from "../../models/job";
 /**
  * Generated class for the MapPage page.
  *
@@ -20,36 +22,25 @@ export class MapPage {
 
   @ViewChild('map') mapElement: ElementRef;
   map: any;
+  jobs: Job[];
 
-  constructor(public geo: Geolocation) {
+  constructor(public geo: Geolocation,  private jobsProv: JobsProvider) {
+  }
+
+  transform(obj: any) {
+    if(obj==null){return null;}
+    let arr = Object.keys(obj).map(function (key) { return obj[key]; });
+    return arr[0];
   }
 
   ionViewDidLoad() {
    this.loadMap();
   }
 
-  // loadmap() {
-  //   let latLng = new google.maps.LatLng(-34.9290, 138.6010);
-  //
-  //   let mapOptions = {
-  //     center: latLng,
-  //     zoom: 15,
-  //     mapTypeId: google.maps.MapTypeId.ROADMAP
-  //   }
-  //
-  //   this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-  //
-  // }
-
-
-  loadMap(){
+  loadMap() {
     console.log("loading the map...");
-
-
     this.geo.getCurrentPosition({timeout: 3000, enableHighAccuracy: true }).then((position) => {
-      console.log("DAM")
-      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
+      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
       let mapOptions = {
         center: latLng,
         zoom: 15,
@@ -57,12 +48,31 @@ export class MapPage {
       };
 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
+      this.getMarkers();
     }, (err) => {
       console.log(err);
     });
-
   }
+
+  getMarkers() {
+    this.jobsProv.load().subscribe(jobs => {
+      this.jobs = jobs;
+      for(let job of this.transform(jobs)){
+        this.addMarkerToMap(job);
+        console.log(job);
+      }
+    }, (err) => {
+      console.log("error")
+      console.log(err);
+    });
+  }
+
+  addMarkerToMap(job) {
+    let position = new google.maps.LatLng(job['geo_location']['lat'], job['geo_location']['lng']);
+    let dogwalkMarker = new google.maps.Marker({position: position, title: job.title});
+    dogwalkMarker.setMap(this.map);
+  }
+
 
   // addMarker(){
   //   let marker = new google.maps.Marker({
