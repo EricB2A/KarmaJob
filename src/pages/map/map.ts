@@ -25,14 +25,29 @@ export class MapPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MapPage');
-    this.loadMap();
-
+   this.loadMap();
   }
 
-  loadMap(){
-    this.geo.getCurrentPosition().then((position) => {
+  // loadmap() {
+  //   let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+  //
+  //   let mapOptions = {
+  //     center: latLng,
+  //     zoom: 15,
+  //     mapTypeId: google.maps.MapTypeId.ROADMAP
+  //   }
+  //
+  //   this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+  //
+  // }
 
+
+  loadMap(){
+    console.log("loading the map...");
+
+
+    this.geo.getCurrentPosition({timeout: 3000, enableHighAccuracy: true }).then((position) => {
+      console.log("DAM")
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
       let mapOptions = {
@@ -40,33 +55,35 @@ export class MapPage {
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
+
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
     }, (err) => {
       console.log(err);
     });
+
   }
 
-  addMarker(){
-    let marker = new google.maps.Marker({
-      map: this.map,
-      animation: google.maps.Animation.DROP,
-      position: this.map.getCenter()
-    });
-
-    let content = "<h4>Information!</h4>";
-    this.addInfoWindow(marker, content);
-  }
-
-  addInfoWindow(marker, content){
-    let infoWindow = new google.maps.InfoWindow({
-      content: content
-    });
-
-    google.maps.event.addListener(marker, 'click', () => {
-      infoWindow.open(this.map, marker);
-    });
-  }
+  // addMarker(){
+  //   let marker = new google.maps.Marker({
+  //     map: this.map,
+  //     animation: google.maps.Animation.DROP,
+  //     position: this.map.getCenter()
+  //   });
+  //
+  //   let content = "<h4>Information!</h4>";
+  //   this.addInfoWindow(marker, content);
+  // }
+  //
+  // addInfoWindow(marker, content){
+  //   let infoWindow = new google.maps.InfoWindow({
+  //     content: content
+  //   });
+  //
+  //   google.maps.event.addListener(marker, 'click', () => {
+  //     infoWindow.open(this.map, marker);
+  //   });
+  // }
 
 
 }

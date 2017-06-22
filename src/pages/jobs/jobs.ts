@@ -34,6 +34,7 @@ export class JobsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private jobsProv: JobsProvider) {
     jobsProv.load().subscribe(jobs => {
+
       this.jobs = jobs
     }, (err) => {
       console.log("error")

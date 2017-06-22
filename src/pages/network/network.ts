@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import {AlertController, IonicPage, NavController, Platform} from 'ionic-angular';
-// import {Network} from "ionic-native";
-import {Network} from 'ionic-native';
 
 declare var navigator: any;
 declare var Connection: any;
@@ -22,8 +20,7 @@ export class NetworkPage {
 
   checkNetwork() {
     this.platform.ready().then(() => {
-      // console.log(navigator.connection.ty);
-      // console.log(Network);
+
       var networkState = navigator.connection.type;
       var states = {};
       states[Connection.UNKNOWN]  = 'Unknown connection';
