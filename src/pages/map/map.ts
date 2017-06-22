@@ -38,25 +38,29 @@ export class MapPage {
   }
 
   loadMap() {
-    console.log("loading the map...");
     this.platform.ready().then(() => {
-      console.log("platform ready");
+      //let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      let mapOptions = {
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      this.getMarkers();
+
       this.geo.getCurrentPosition({timeout: 10000 , enableHighAccuracy: false, maximumAge: 0 })
         .then((position) => {
-          console.log("et thomas aussi");
-          let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-          let mapOptions = {
-            center: latLng,
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          };
+          this.map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
 
-          this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-          this.getMarkers();
         }, (err) => {
           console.log(err);
+          this.geo.watchPosition({timeout: 3000, enableHighAccuracy: true}).subscribe((position)=>{
+            this.map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+            console.log("pos");
+            console.log(position);
+          })
         });
     });
+
   }
 
   getMarkers() {
@@ -67,7 +71,6 @@ export class MapPage {
         console.log(job);
       }
     }, (err) => {
-      console.log("error")
       console.log(err);
     });
   }

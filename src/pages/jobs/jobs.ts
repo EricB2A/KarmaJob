@@ -38,6 +38,7 @@ export class JobsPage {
       this.jobs = jobs
     }, (err) => {
       console.log("error")
+
       console.log(err);
     });
   }

@@ -43,11 +43,19 @@ export class SettingsPage {
         err => {
           let alert = this.alertCtrl.create({
               title: 'API URL NOT VALID!',
-              subTitle: 'The given url is not a valid api. For trial, please use http://karmajobs.servehttp.com/api/jobs .',
-              buttons: ['OK']
+              subTitle: 'The given url is not a valid api. Do you want to use the default api value ?',
+              buttons:[
+                {
+                  text: 'Use KarmaJob API',
+                  handler : () => {
+                    this.storage.set('api_url', 'http://karmajobs.servehttp.com/api/jobs');
+                  }
+                },
+                {text: 'No thanks'}
+              ]
+
             });
             alert.present();
-
         }
       );
 

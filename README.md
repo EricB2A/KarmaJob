@@ -63,7 +63,8 @@ If you plan to build a realease.apk and sign it 'manually', please refer to the 
 
 
 ## Bugs
-The Cordova plugin **'geolocation'** throws a Timeout error when the map is loading.  
+The Cordova plugin **'geolocation'** throws a Timeout error when getting the position coordinates.
 No solution seems to be found for this issue, as you can see [here](https://stackoverflow.com/questions/29411697/timeout-about-geolocation-always-reached-when-position-mode-is-set-to-device-on) or [here](https://github.com/ionic-team/ng-cordova/issues/743).
-The map is only displayed when we reboot the phone or when we manually send the GRP data point in an emulator.
-If you want to see what the map looks like with the markers, I recommend you to use `ionic serve`.
+So we only display the map with the jobs markers, but the map is not centered on the current position.
+Sometimes the module works when we reboot the phone or when we manually send the GRP data point in an emulator.
+If you want to see what the working map looks like, I recommend you to use `ionic serve`.
