@@ -26,10 +26,14 @@ export class JobsProvider {
 
   load(): Observable<Job[]> {
     return Observable.fromPromise(this.storage.get("api_url")).mergeMap(url_setting => {
+      console.log("my set");
       console.log(url_setting);
-      console.log("my set")
       return this.http.get(url_setting)
-        .map(res => <Job[]>res.json());
+        .map(res => {
+          console.log("my res from jobs");
+          console.log(res);
+          return <Job[]>res.json();
+        });
     });
   }
 }
