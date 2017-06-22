@@ -60,3 +60,10 @@ If you have any trouble at this point, please refer to the [official documentati
 Ionic generate an auto-signed APK when we build the app.
 You can find this **.apk** in _/platforms/android/build/outputs/apk/android.apk_
 If you plan to build a realease.apk and sign it 'manually', please refer to the [documentation](http://ionicframework.com/docs/v1/guide/publishing.html)
+
+
+## Bugs
+The Cordova plugin **'geolocation'** throws a Timeout error when the map is loading.  
+No solution seems to be found for this issue, as you can see [here](https://stackoverflow.com/questions/29411697/timeout-about-geolocation-always-reached-when-position-mode-is-set-to-device-on) or [here](https://github.com/ionic-team/ng-cordova/issues/743).
+The map is only displayed when we reboot the phone or when we manually send the GRP data point in an emulator.
+If you want to see what the map looks like with the markers, I recommend you to use `ionic serve`.

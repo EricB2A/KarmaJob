@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { JobsProvider } from "../../providers/jobs/jobs";
 
@@ -24,7 +24,7 @@ export class MapPage {
   map: any;
   jobs: Job[];
 
-  constructor(public geo: Geolocation,  private jobsProv: JobsProvider) {
+  constructor(public geo: Geolocation,  private jobsProv: JobsProvider, private platform: Platform) {
   }
 
   transform(obj: any) {
@@ -39,18 +39,23 @@ export class MapPage {
 
   loadMap() {
     console.log("loading the map...");
-    this.geo.getCurrentPosition({timeout: 3000, enableHighAccuracy: true }).then((position) => {
-      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
-      let mapOptions = {
-        center: latLng,
-        zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
+    this.platform.ready().then(() => {
+      console.log("platform ready");
+      this.geo.getCurrentPosition({timeout: 10000 , enableHighAccuracy: false, maximumAge: 0 })
+        .then((position) => {
+          console.log("et thomas aussi");
+          let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          let mapOptions = {
+            center: latLng,
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
 
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      this.getMarkers();
-    }, (err) => {
-      console.log(err);
+          this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+          this.getMarkers();
+        }, (err) => {
+          console.log(err);
+        });
     });
   }
 

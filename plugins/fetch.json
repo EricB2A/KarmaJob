@@ -88,5 +88,13 @@
         "variables": {
             "API_KEY_FOR_ANDROID": "AIzaSyAnOwey9weyCQLHlH-iAWtMqdk-AGxMR4c"
         }
+    },
+    "cordova-plugin-advanced-geolocation": {
+        "source": {
+            "type": "registry",
+            "id": "https://github.com/esri/cordova-plugin-advanced-geolocation.git"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
