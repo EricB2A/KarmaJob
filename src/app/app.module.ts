@@ -16,9 +16,9 @@ import {HttpModule} from '@angular/http'
 import {SettingsPage} from "../pages/settings/settings";
 import { IonicStorageModule } from '@ionic/storage';
 import { MapPage } from "../pages/map/map";
+import { NetworkPage } from "../pages/network/network";
 import { Geolocation } from '@ionic-native/geolocation';
-
-import { Network } from '@ionic-native/network';
+import {Network} from 'ionic-native';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { Network } from '@ionic-native/network';
     JobsPage,
     ObjectValuesPipe,
     SettingsPage,
-    MapPage
+    MapPage,
+    NetworkPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +46,8 @@ import { Network } from '@ionic-native/network';
     ListPage,
     JobsPage,
     SettingsPage,
-    MapPage
+    MapPage,
+    NetworkPage
   ],
   providers: [
     StatusBar,

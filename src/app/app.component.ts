@@ -10,6 +10,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { JobsPage } from "../pages/jobs/jobs";
 import { SettingsPage } from "../pages/settings/settings";
 import { MapPage } from "../pages/map/map";
+import { NetworkPage } from "../pages/network/network";
 
 @Component({
   templateUrl: 'app.html'
@@ -34,7 +35,8 @@ export class MyApp {
       { title: 'Hello Ionic', component: HelloIonicPage },
       { title : 'Jobs', component: JobsPage },
       { title : 'Maps', component: MapPage },
-      { title : 'Settings', component: SettingsPage}
+      { title : 'Settings', component: SettingsPage},
+      { title : 'Network', component: NetworkPage}
     ];
   }
 
