@@ -69,8 +69,16 @@ export class MapPage {
 
   addMarkerToMap(job) {
     let position = new google.maps.LatLng(job['geo_location']['lat'], job['geo_location']['lng']);
-    let dogwalkMarker = new google.maps.Marker({position: position, title: job.title});
-    dogwalkMarker.setMap(this.map);
+    let marker = new google.maps.Marker({position: position, title: job.title});
+    let info = new google.maps.InfoWindow({
+      content: job.title
+    });
+
+    marker.addListener('click', () => {
+      info.open(this.map, marker);
+    });
+
+    marker.setMap(this.map);
   }
 
 
