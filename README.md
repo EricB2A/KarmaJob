@@ -33,7 +33,7 @@ Simply run `sudo npm install -g ionic cordova`.
 
 To **enable the platform**, use the following commands  
 
-`ionic cordova platform add ios` or/and `ionic cordova platform add android`  
+`cordova platform add ios` or/and `cordova platform add android`  
 
 And for **testing**, use 
 
