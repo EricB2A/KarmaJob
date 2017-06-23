@@ -54,8 +54,7 @@ import {Network} from 'ionic-native';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     JobsProvider,
-    Geolocation,
-    Network
+    Geolocation
   ]
 })
 export class AppModule {}

@@ -48,7 +48,9 @@ export class SettingsPage {
                 {
                   text: 'Use KarmaJob API',
                   handler : () => {
-                    this.storage.set('api_url', 'http://karmajobs.servehttp.com/api/jobs');
+                    let karmaJobApiUrl = 'http://karmajobs.servehttp.com/api/jobs';
+                    this.storage.set('api_url', karmaJobApiUrl);
+                    this.settings.url = karmaJobApiUrl;
                   }
                 },
                 {text: 'No thanks'}
