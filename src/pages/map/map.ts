@@ -1,5 +1,5 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
+import { Component, ElementRef, ViewChild} from '@angular/core';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { JobsProvider } from "../../providers/jobs/jobs";
 
@@ -24,8 +24,7 @@ export class MapPage {
   map: any;
   jobs: Job[];
 
-  constructor(public geo: Geolocation,  private jobsProv: JobsProvider, private platform: Platform) {
-  }
+  constructor(public geo: Geolocation,  private jobsProv: JobsProvider, private platform: Platform) { }
 
   transform(obj: any) {
     if(obj==null){return null;}
@@ -36,7 +35,6 @@ export class MapPage {
   ionViewDidLoad() {
    this.loadMap();
   }
-
   loadMap() {
     this.platform.ready().then(() => {
       //let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -47,18 +45,40 @@ export class MapPage {
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
       this.getMarkers();
 
-      this.geo.getCurrentPosition({timeout: 10000 , enableHighAccuracy: false, maximumAge: 0 })
+      this.geo.getCurrentPosition({timeout: 3000 , enableHighAccuracy: false, maximumAge: 0 })
         .then((position) => {
           this.map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
 
         }, (err) => {
           console.log(err);
-          this.geo.watchPosition({timeout: 3000, enableHighAccuracy: true}).subscribe((position)=>{
-            this.map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-            console.log("pos");
-            console.log(position);
-          })
+          // set hardcoded position
+          this.map.setCenter(new google.maps.LatLng(-122.084, 37.422));
+
         });
+    });
+
+  }
+  _loadMap() {
+    this.platform.ready().then(() => {
+      let mapOptions = {
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      this.getMarkers();
+
+      this.geo.getCurrentPosition({timeout: 3000 , enableHighAccuracy: false, maximumAge: 0 })
+        .then((position) => {
+          this.map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+
+        }, (err) => {
+          console.log(err);
+          // set hardcoded position
+          this.map.setCenter(new google.maps.LatLng(-122.084, 37.422));
+
+      });
+
+
     });
 
   }
@@ -68,7 +88,6 @@ export class MapPage {
       this.jobs = jobs;
       for(let job of this.transform(jobs)){
         this.addMarkerToMap(job);
-        console.log(job);
       }
     }, (err) => {
       console.log(err);
@@ -85,7 +104,6 @@ export class MapPage {
     marker.addListener('click', () => {
       info.open(this.map, marker);
     });
-
     marker.setMap(this.map);
   }
 
@@ -110,6 +128,5 @@ export class MapPage {
   //     infoWindow.open(this.map, marker);
   //   });
   // }
-
 
 }
