@@ -5,27 +5,24 @@ import { MyApp } from './app.component';
 
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
-//import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import {JobsPage, ObjectValuesPipe} from "../pages/jobs/jobs";
-import {JobsProvider } from '../providers/jobs/jobs';
-import {HttpModule} from '@angular/http'
-import {SettingsPage} from "../pages/settings/settings";
+import {JobsPage, ObjectValuesPipe } from "../pages/jobs/jobs";
+import { JobsProvider } from '../providers/jobs/jobs';
+import { HttpModule } from '@angular/http'
+import { SettingsPage } from "../pages/settings/settings";
 import { IonicStorageModule } from '@ionic/storage';
 import { MapPage } from "../pages/map/map";
 import { NetworkPage } from "../pages/network/network";
 import { Geolocation } from '@ionic-native/geolocation';
-//import { Network } from 'ionic-native';
 
 @NgModule({
   declarations: [
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
-    //ListPage,
     JobsPage,
     ObjectValuesPipe,
     SettingsPage,
@@ -43,7 +40,6 @@ import { Geolocation } from '@ionic-native/geolocation';
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
-    //ListPage,
     JobsPage,
     SettingsPage,
     MapPage,

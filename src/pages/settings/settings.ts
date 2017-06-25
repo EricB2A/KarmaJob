@@ -1,15 +1,9 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
-import {FormBuilder, Validators} from "@angular/forms";
+import { FormBuilder } from "@angular/forms";
 
-/**
- * Generated class for the SettingsPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-settings',
@@ -20,7 +14,7 @@ export class SettingsPage {
   settings = {url:""};
   urlForm = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public alertCtrl: AlertController, public http: Http, private formBuilder: FormBuilder) {
+  constructor(public storage: Storage, public alertCtrl: AlertController, public http: Http) {
     this.storage.get('api_url')
       .then(data => {
         this.settings.url = data;
@@ -34,13 +28,16 @@ export class SettingsPage {
 
   settingForm(){
     console.log(this.settings);
+    // try to query the given api
     this.http.get(this.settings.url)
       .subscribe(
         data => {
+          // store the value
           this.storage.set('api_url', this.settings.url);
           console.log("Worked so far !");
         },
         err => {
+          // if we can't get a value on the given api, throw a message error
           let alert = this.alertCtrl.create({
               title: 'API URL NOT VALID!',
               subTitle: 'The given url is not a valid api. Do you want to use the default api value ?',
@@ -48,6 +45,8 @@ export class SettingsPage {
                 {
                   text: 'Use KarmaJob API',
                   handler : () => {
+                    // if the user decide to use the KarmaJob API
+                    // store the value and set the input value
                     let karmaJobApiUrl = 'http://karmajobs.servehttp.com/api/jobs';
                     this.storage.set('api_url', karmaJobApiUrl);
                     this.settings.url = karmaJobApiUrl;

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, Platform } from 'ionic-angular';
-//import { Network } from "ionic-native";
 
 declare var navigator: any;
 declare var Connection: any;
@@ -12,25 +11,16 @@ declare var Connection: any;
 })
 export class NetworkPage {
 
-  constructor(private navCtrl: NavController, private platform: Platform, private alertCtrl: AlertController) {
-  }
+  constructor(private navCtrl: NavController, private platform: Platform, private alertCtrl: AlertController) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NetworkPage');
   }
 
-  /*_checkNetwork() {
-    this.platform.ready()
-        .then(() => {
-            let alert = this.alertCtrl.create({
-            title: "Connection Status",
-            subTitle: <string> this.network ,
-            buttons: ["OK"]
-            });
-            alert.present();
-        });
-  }*/
-
+  /**
+   * Uses 'cordova-plugin-network-information' cordova's plugin to get the connection information
+   * This functionality only work in native environment, and fails on a browser.
+   */
   checkNetwork() {
     this.platform.ready().then(() => {
       var networkState = navigator.connection.type;

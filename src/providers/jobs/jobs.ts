@@ -7,16 +7,7 @@ import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
-
-
 import { Job } from '../../models/job';
-
-/*
-  Generated class for the JobsProvider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 
 @Injectable()
 export class JobsProvider {
@@ -24,15 +15,15 @@ export class JobsProvider {
   constructor(public http: Http, public storage: Storage){
   }
 
+  /**
+   * Get the jobs from the given api.
+   * And returns it in an observable made of models.
+   * @returns {Observable<Job>}
+   */
   load(): Observable<Job[]> {
     return Observable.fromPromise(this.storage.get("api_url")).mergeMap(url_setting => {
-      console.log("my set");
-      console.log(url_setting);
       return this.http.get(url_setting)
         .map(res => {
-          console.log("my res from jobs");
-          console.log("================");
-          console.log(res);
           return <Job[]>res.json();
         });
     });
