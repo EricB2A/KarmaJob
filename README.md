@@ -33,11 +33,11 @@ And go inside it with `cd KarmaJob`.
 
 To install ionic, simply run `sudo npm install -g ionic cordova`.    
 
-Then install the depedencies with `sudo npm install`.  
+Then install the depedencies with `npm install`.  
 
 To **enable the platform**, use the following commands  
 
-`sudo ionic cordova platform add ios` or/and `sudo ionic cordova platform add android`    
+`ionic cordova platform add ios` or/and `ionic cordova platform add android`    
 
 And to run it on your device as a **native app**, use  
 
