@@ -26,27 +26,30 @@ Then run `xcode-select --install`
 * The [deploy tools](https://www.npmjs.com/package/ios-deploy) with the command `npm install -g ios-deploy`  
 
 
-
 ### Ionic installation  
 
-Simply run `sudo npm install -g ionic cordova`.    
+Clone the project `git clone https://github.com/EricBroutba/KarmaJob.git`.  
+And go inside it with `cd KarmaJob`.  
+
+To install ionic, simply run `sudo npm install -g ionic cordova`.    
+
+Then install the depedencies with `sudo npm install`.  
 
 To **enable the platform**, use the following commands  
 
-`cordova platform add ios` or/and `cordova platform add android`  
+`ionic cordova platform add ios` or/and `ionic cordova platform add android`  
 
-And for **testing**, use 
+And to run it on your device as a **native app**, use  
+
+`ionic cordova run ios`  and/or  `ionic cordova run android`  
+
+You can also use for **testing**  
 
 `ionic cordova build ios` and/or `ionic cordova build android`  
 then   
 `ionic cordova emulate ios` and/or `ionic cordova emulate android`  
 
 if you don't want the debug mode, use the parameter --release as `ionic cordova build --release android`
-
-If you want to test it as a **native app**, use  
-
-`ionic cordova run ios`  and/or  `ionic cordova run android`  
-
 
 You can also have access to the app in your **browser** direcly by using  
 
