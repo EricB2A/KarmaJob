@@ -6,7 +6,7 @@ The central component of the application are the jobs. All the avaiable jobs are
 Then, each job is displayed in a scrollable list. 
 ![Jobs](resources/job_list.png).  
 When you click on any job, the details are displayed.
-![Jobs Details](resources/job_details.png).  
+<img src="resources/job_details.png" width="100" />
 
 ### Setting URL api
 The url to get the jobs is customable. We strongly recommend to use the http://karmajobs.servehttp.com/api/jobs for testing, but you can change it as you like.  
