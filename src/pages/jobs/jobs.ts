@@ -1,14 +1,9 @@
 import {Component, Pipe, Injectable, PipeTransform} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 
 import { JobsProvider } from '../../providers/jobs/jobs'
 import { Job } from "../../models/job";
 import { ItemDetailsPage } from "../item-details/item-details";
-
-
-/**
- * Generated class for the JobsPage page.
- */
 
 @Pipe({
   name: 'objectValues'
@@ -32,14 +27,17 @@ export class ObjectValuesPipe implements PipeTransform {
 export class JobsPage {
   jobs: Job[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private jobsProv: JobsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private jobsProv: JobsProvider, private alertCtrl: AlertController) {
     jobsProv.load().subscribe(jobs => {
-
+      console.log(jobs);
       this.jobs = jobs
     }, (err) => {
-      console.log("error")
-
       console.log(err);
+      let alert = this.alertCtrl.create({
+        title: "Error while getting jobs",
+        subTitle: "Please check the settings API URL or your connection.",
+        buttons: ["OK"]
+      })
     });
   }
 
