@@ -3,28 +3,28 @@ Here's a briev description of the functionnalities avaiable on the v1.0.0.
 
 ### Web service
 The central component of the application are the jobs. All the avaiable jobs are taken from the web api http://karmajobs.servehttp.com/api/jobs.  
-Then, each job is displayed in a scrollable list. 
-![Jobs](resources/job_list.png).  
-When you click on any job, the details are displayed.
-<img src="resources/job_details.png" width="600" />
+Then, each job is displayed in a scrollable list
+<img src="resources/job_list.png" width="400" />.    
+When you click on any job, the details are displayed
+<img src="resources/job_details.png" width="600" />.  
 
 ### Setting URL api
-The url to get the jobs is customable. We strongly recommend to use the http://karmajobs.servehttp.com/api/jobs for testing, but you can change it as you like.  
-![Settings](resources/settings.png | width=100).
-If the url is not valid, a pop-up alert will inform you.
+The url to get the jobs is customable. We strongly recommend to use the http://karmajobs.servehttp.com/api/jobs for testing, but you can change it as you like    
+<img src="resources/settings.png" width="400" />.  
+If the url is not valid, a pop-up alert will inform you  
 ![Settings Alert](resources/settings_alert.png).  
 Then the setting is stored in the device.
 
 ### Location
-The location component allow the user to see the avaiable jobs on a map.  
-![Map](resources/maps.png).  
+The location component allow the user to see the avaiable jobs on a map  
+<img src="resources/maps.png" width="400" />.  
 **The map is not centered to the user location** as wanted. Refer to the **Bugs** for the details.  
 The map can still be displayed with the jobs' details markers on it.
 
 ### Network status
 This page allow the user to know if he is or not connected to the internet.
-A pop-up alert is displayed to the user when he press the 'Show network configuration' button.  
-![Network](resources/network.png).  
+A pop-up alert is displayed to the user when he press the 'Show network configuration' button  
+<img src="resources/network.png" width="400" />.  
 The application can manage differents connection states.
 - Unknown connection
 - Ethernet connection
