@@ -1,5 +1,5 @@
-import {Component, Pipe, Injectable, PipeTransform} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Component, Pipe, Injectable, PipeTransform } from '@angular/core';
+import {AlertController, IonicPage, NavController } from 'ionic-angular';
 
 import { JobsProvider } from '../../providers/jobs/jobs'
 import { Job } from "../../models/job";
