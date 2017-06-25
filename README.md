@@ -57,8 +57,8 @@ If you have any trouble at this point, please refer to the [official documentati
 
 
 ## Build an APK
-Ionic generate an auto-signed APK when we build the app.
-You can find this **.apk** in _/platforms/android/build/outputs/apk/android.apk_
+Ionic generate an auto-signed APK when we build or run the app.
+You can find this **.apk** in _/platforms/android/build/outputs/apk/android.apk_.  
 If you plan to build a realease.apk and sign it 'manually', please refer to the [documentation](http://ionicframework.com/docs/v1/guide/publishing.html)
 
 
