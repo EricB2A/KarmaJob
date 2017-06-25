@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { MenuController, Platform } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { JobsProvider } from "../../providers/jobs/jobs";
 import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng , GoogleMapsMarker, GoogleMapsMarkerOptions } from 'ionic-native';
@@ -19,7 +19,7 @@ export class MapPage {
   jobs: Job[];
   map: GoogleMap;
 
-  constructor(public geo: Geolocation,  private jobsProv: JobsProvider, private platform: Platform) { }
+  constructor(public geo: Geolocation,  private jobsProv: JobsProvider, private platform: Platform, public menuCtrl: MenuController) { }
 
   /**
    * Transform object to array
@@ -33,7 +33,24 @@ export class MapPage {
   }
 
   ionViewDidLoad() {
-   this.loadMap();
+  this.loadMap();
+
+  // make the slide menu selectable opened
+  // without this code, the map is clicked instead of an item of the menu (when opened)
+  let leftMenu = this.menuCtrl.get('left');
+  if (leftMenu) {
+    leftMenu.ionOpen.subscribe(() => {
+      if (this.map) {
+        this.map.setClickable(false);
+      }
+    });
+
+    leftMenu.ionClose.subscribe(() => {
+      if (this.map) {
+        this.map.setClickable(true);
+      }
+    });
+    }
   }
 
   loadMap(){
