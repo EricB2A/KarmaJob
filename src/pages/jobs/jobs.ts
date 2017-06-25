@@ -11,6 +11,11 @@ import { ItemDetailsPage } from "../item-details/item-details";
 
 @Injectable()
 export class ObjectValuesPipe implements PipeTransform {
+  /**
+   * Transform object to array
+   * @param obj
+   * @returns array
+   */
   transform(obj: any) {
     if(obj==null){return null;}
     let arr = Object.keys(obj).map(function (key) { return obj[key]; });
@@ -27,21 +32,27 @@ export class ObjectValuesPipe implements PipeTransform {
 export class JobsPage {
   jobs: Job[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private jobsProv: JobsProvider, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, private jobsProv: JobsProvider, private alertCtrl: AlertController) {
     jobsProv.load().subscribe(jobs => {
       console.log(jobs);
       this.jobs = jobs
     }, (err) => {
       console.log(err);
+      // if we cannot load the jobs, show error
       let alert = this.alertCtrl.create({
         title: "Error while getting jobs",
         subTitle: "Please check the settings API URL or your connection.",
         buttons: ["OK"]
-      })
+      });
+      alert.present();
     });
   }
 
-  goToDetails(details: object){
+  /**
+   * Go to the details of the selected job
+   * @param details
+   */
+  goToDetails(details: object) {
     this.navCtrl.push(ItemDetailsPage, {details});
   }
 

@@ -5,7 +5,7 @@ import { MyApp } from './app.component';
 
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
-import { ListPage } from '../pages/list/list';
+//import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,14 +18,14 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MapPage } from "../pages/map/map";
 import { NetworkPage } from "../pages/network/network";
 import { Geolocation } from '@ionic-native/geolocation';
-import {Network} from 'ionic-native';
+//import { Network } from 'ionic-native';
 
 @NgModule({
   declarations: [
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
-    ListPage,
+    //ListPage,
     JobsPage,
     ObjectValuesPipe,
     SettingsPage,
@@ -43,7 +43,7 @@ import {Network} from 'ionic-native';
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
-    ListPage,
+    //ListPage,
     JobsPage,
     SettingsPage,
     MapPage,

@@ -31,6 +31,7 @@ export class JobsProvider {
       return this.http.get(url_setting)
         .map(res => {
           console.log("my res from jobs");
+          console.log("================");
           console.log(res);
           return <Job[]>res.json();
         });
