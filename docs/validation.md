@@ -5,14 +5,14 @@ Here's a briev description of the functionnalities avaiable on the v1.0.0.
 The central component of the application are the jobs. All the avaiable jobs are taken from the web api http://karmajobs.servehttp.com/api/jobs.  
 Then, each job is displayed in a scrollable list  
 <img src="resources/job_list.png" width="400" />.    
-When you click on any job, the details are displayed
+When the user click on any job, the details are displayed  
 <img src="resources/job_details.png" width="400" />.  
 
 ### Setting URL api
 The url to get the jobs is customable. We strongly recommend to use the http://karmajobs.servehttp.com/api/jobs for testing, but you can change it as you like    
 <img src="resources/settings.png" width="400" />.  
-If the url is not valid, a pop-up alert will inform you  
-<img src="resources/settings_alert.png" width="400" />.  .  
+If the url is not valid, a pop-up alert will appear  
+<img src="resources/settings_alert.png" width="400" />.    
 Then the setting is stored in the device.
 
 ### Location
