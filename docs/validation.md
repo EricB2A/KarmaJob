@@ -4,27 +4,27 @@ Here's a briev description of the functionnalities avaiable on the v1.0.0.
 ### Web service
 The central component of the application are the jobs. All the avaiable jobs are taken from the web api http://karmajobs.servehttp.com/api/jobs.  
 Then, each job is displayed in a scrollable list. 
-![Jobs](resources/job_list.png =250x).  
+![Jobs](resources/job_list.png).  
 When you click on any job, the details are displayed.
-![Jobs Details](resources/job_details.png =250x).  
+![Jobs Details](resources/job_details.png).  
 
 ### Setting URL api
 The url to get the jobs is customable. We strongly recommend to use the http://karmajobs.servehttp.com/api/jobs for testing, but you can change it as you like.  
-![Settings](resources/settings.png =250x).
+![Settings](resources/settings.png | width=100).
 If the url is not valid, a pop-up alert will inform you.
-![Settings Alert](resources/settings_alert.png =250x).  
+![Settings Alert](resources/settings_alert.png).  
 Then the setting is stored in the device.
 
 ### Location
 The location component allow the user to see the avaiable jobs on a map.  
-![Map](resources/maps.png =250x).  
+![Map](resources/maps.png).  
 **The map is not centered to the user location** as wanted. Refer to the **Bugs** for the details.  
 The map can still be displayed with the jobs' details markers on it.
 
 ### Network status
 This page allow the user to know if he is or not connected to the internet.
 A pop-up alert is displayed to the user when he press the 'Show network configuration' button.  
-![Network](resources/network.png =250x).  
+![Network](resources/network.png).  
 The application can manage differents connection states.
 - Unknown connection
 - Ethernet connection
