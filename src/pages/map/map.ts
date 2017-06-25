@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { JobsProvider } from "../../providers/jobs/jobs";
+import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng , GoogleMapsMarker, GoogleMapsMarkerOptions } from 'ionic-native';
 
 import { Job } from "../../models/job";
 /**
@@ -21,8 +22,8 @@ declare var google;
 export class MapPage {
 
   @ViewChild('map') mapElement: ElementRef;
-  map: any;
   jobs: Job[];
+  map: GoogleMap;
 
   constructor(public geo: Geolocation,  private jobsProv: JobsProvider, private platform: Platform) { }
 
@@ -35,52 +36,49 @@ export class MapPage {
   ionViewDidLoad() {
    this.loadMap();
   }
-  loadMap() {
-    this.platform.ready().then(() => {
-      //let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-      let mapOptions = {
-        zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      this.getMarkers();
 
-      this.geo.getCurrentPosition({timeout: 3000 , enableHighAccuracy: false, maximumAge: 0 })
-        .then((position) => {
-          this.map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+  loadMap(){
+    this.platform.ready()
+      .then(() => {
+        let location = new GoogleMapsLatLng(46.8216845, 6.50598);
+        this.geo.getCurrentPosition({timeout: 3000 , enableHighAccuracy: false, maximumAge: 0 })
+          .then((position) => {
+            this.map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+            location = new GoogleMapsLatLng(position.coords.latitude, position.coords.longitude);
+          }, (err) => {
+            console.log(err);
 
-        }, (err) => {
-          console.log(err);
-          // set hardcoded position
-          this.map.setCenter(new google.maps.LatLng(-122.084, 37.422));
+          });
 
+        this.map = new GoogleMap('map', {
+          'backgroundColor': 'white',
+          'controls': {
+            'compass': true,
+            'myLocationButton': true,
+            'indoorPicker': true,
+            'zoom': true
+          },
+          'gestures': {
+            'scroll': true,
+            'tilt': true,
+            'rotate': true,
+            'zoom': true
+          },
+          'camera': {
+            'latLng': location,
+            'tilt': 0,
+            'zoom': 15,
+            'bearing': 0
+          }
         });
-    });
 
-  }
-  _loadMap() {
-    this.platform.ready().then(() => {
-      let mapOptions = {
-        zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      this.getMarkers();
+        this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
+          console.log('Map is ready!');
+          this.getMarkers();
+        });
 
-      this.geo.getCurrentPosition({timeout: 3000 , enableHighAccuracy: false, maximumAge: 0 })
-        .then((position) => {
-          this.map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-
-        }, (err) => {
-          console.log(err);
-          // set hardcoded position
-          this.map.setCenter(new google.maps.LatLng(-122.084, 37.422));
 
       });
-
-
-    });
-
   }
 
   getMarkers() {
@@ -95,38 +93,15 @@ export class MapPage {
   }
 
   addMarkerToMap(job) {
-    let position = new google.maps.LatLng(job['geo_location']['lat'], job['geo_location']['lng']);
-    let marker = new google.maps.Marker({position: position, title: job.title});
-    let info = new google.maps.InfoWindow({
-      content: job.title
-    });
+    let markerOptions: GoogleMapsMarkerOptions = {
+      position: new GoogleMapsLatLng(job['geo_location']['lat'], job['geo_location']['lng']),
+      title: job.title
+    };
 
-    marker.addListener('click', () => {
-      info.open(this.map, marker);
-    });
-    marker.setMap(this.map);
+    this.map.addMarker(markerOptions)
+      .then((marker: GoogleMapsMarker) => {
+        marker.showInfoWindow();
+      });
+
   }
-
-
-  // addMarker(){
-  //   let marker = new google.maps.Marker({
-  //     map: this.map,
-  //     animation: google.maps.Animation.DROP,
-  //     position: this.map.getCenter()
-  //   });
-  //
-  //   let content = "<h4>Information!</h4>";
-  //   this.addInfoWindow(marker, content);
-  // }
-  //
-  // addInfoWindow(marker, content){
-  //   let infoWindow = new google.maps.InfoWindow({
-  //     content: content
-  //   });
-  //
-  //   google.maps.event.addListener(marker, 'click', () => {
-  //     infoWindow.open(this.map, marker);
-  //   });
-  // }
-
 }
